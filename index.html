@@ -65,6 +65,26 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
+/* Sidebar Menu Styles */
+.menu-btn { position: fixed; top: 20px; left: 20px; z-index: 50; background: var(--surface); border: 1px solid var(--border); padding: 10px 16px; border-radius: 12px; font-size: 1.5rem; cursor: pointer; color: var(--text); backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.2s; }
+.menu-btn:hover { background: #fff; color: var(--accent); border-color: var(--accent); transform: scale(1.05); }
+
+.sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100vh; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); z-index: 100; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+.sidebar.active { left: 0; }
+
+.menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 90; opacity: 0; visibility: hidden; transition: 0.3s; }
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+.sidebar-header { padding: 2rem 1.5rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+.sidebar-header h2 { color: var(--accent); font-family: var(--serif); font-size: 1.8rem; margin:0;}
+.close-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); transition: 0.2s; padding: 5px; }
+.close-btn:hover { color: var(--danger); transform: rotate(90deg); }
+
+.sidebar-menu { list-style: none; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; margin:0; }
+.sidebar-menu li { padding: 1rem 1.2rem; border-radius: 12px; cursor: pointer; font-weight: 600; color: var(--text); transition: 0.2s; display: flex; align-items: center; gap: 12px; border: 1px solid transparent; }
+.sidebar-menu li:hover { background: rgba(37, 99, 235, 0.05); color: var(--accent); border-color: var(--border); transform: translateX(5px); }
+.sidebar-menu li.active { background: var(--accent); color: white; }
+
 .header { text-align: center; margin-bottom: 2.5rem; padding: 3rem 1.5rem; }
 .header h1 { font-family: var(--serif); font-size: 3rem; margin-bottom: 0.3rem; color: var(--accent); font-weight: 700; letter-spacing: -1px; }
 .header p.subtitle { color: var(--text); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;}
@@ -97,7 +117,6 @@ body {
 .spinner { border: 4px solid var(--border); border-top: 4px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin-bottom: 25px; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Filter Section */
 #filter-section, #quiz-section, #result-section { display: none; padding: 2.5rem; margin-bottom: 1.5rem; }
 .filter-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
 .filter-label { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; display: block; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
@@ -107,7 +126,6 @@ body {
 .filter-actions { display: flex; gap: 1rem; align-items: center; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
 .filter-actions input { width: 80px; padding: 0.6rem; border-radius: 10px; background: #fff; border: 1px solid var(--border); color: var(--text); text-align: center; font-size: 1.1rem; font-weight: 600; }
 
-/* Quiz Area - EXAM MODE */
 .quiz-header { display:flex; justify-content:space-between; align-items: center; margin-bottom:1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
 .q-num-title { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
 .q-meta { display:flex; gap:0.6rem; flex-wrap:wrap; }
@@ -119,11 +137,9 @@ body {
 .choice-key { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; background: #f1f5f9; color: var(--muted); border: 1px solid var(--border); transition: .2s; }
 .choice-text { font-size: 1.1rem; flex: 1; }
 
-/* Selected State during exam */
 .choice.selected { border-color: var(--accent); background: rgba(37, 99, 235, 0.05); }
 .choice.selected .choice-key { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-/* Bottom Question Nav Grid */
 .nav-grid-container { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 .nav-grid-title { font-size: 0.9rem; font-weight: 600; color: var(--muted); margin-bottom: 1rem; text-transform: uppercase; }
 .nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
@@ -137,7 +153,6 @@ body {
 .btn-skip { background: #fff; color: var(--warn); border: 2px solid var(--warn); padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: var(--sans); }
 .btn-skip:hover { background: var(--warn-dim); }
 
-/* Result Section */
 #result-section { text-align: center; }
 .score-circle { width: 160px; height: 160px; border-radius: 50%; border: 8px solid var(--accent); display: flex; align-items: center; justify-content: center; flex-direction: column; margin: 0 auto 2rem; background: #fff; box-shadow: 0 10px 30px var(--accent-glow); }
 .score-circle h1 { font-size: 3rem; margin: 0; color: var(--accent); }
@@ -162,6 +177,25 @@ body {
 <body>
 
 <div class="bg-animated"></div>
+
+<div class="menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>MedQuiz</h2>
+    <button onclick="toggleMenu()" class="close-btn">✕</button>
+  </div>
+  <ul class="sidebar-menu">
+    <li class="active" onclick="location.reload()">🏠 Trang chủ</li>
+    <li onclick="alert('Tính năng Bảng vàng xếp hạng đang được phát triển!')">🏆 Bảng xếp hạng</li>
+    <li onclick="alert('Kho tài liệu Sinh lý học, Giải phẫu, v.v. sẽ sớm ra mắt!')">📚 Kho tài liệu YK24A</li>
+    <li onclick="alert('Lịch đá banh K24A: Đừng quên ra sân chiều thứ 7 tuần này nhé anh em!')">⚽ Đội bóng K24A</li>
+    <li onclick="alert('Giải Bida 3C giao lưu đang lên kèo. Chờ thông báo nhé!')">🎱 Kèo Bida 3C</li>
+    <li onclick="alert('Hệ thống trắc nghiệm nội bộ. Coded by Nguyễn Phương Đông - YK24A.')">ℹ️ Về Hệ thống</li>
+  </ul>
+</div>
+
 <div id="loading"><div class="spinner"></div><div style="color:var(--text); font-weight:600; letter-spacing:1px; font-size: 1.1rem; margin-top: 10px;">ĐANG TẢI DỮ LIỆU...</div></div>
 
 <div class="footer-credit">Nguyễn Phương Đông | YK24A - TNU</div>
@@ -198,6 +232,7 @@ body {
     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--accent);">Thiết lập bài thi</h3>
     <div id="tab-filters"></div>
     <div id="level-filters"></div>
+    
     <div class="filter-actions">
       <span style="font-size:1rem; color:var(--text); font-weight:700;">SỐ CÂU:</span>
       <input type="number" id="count-input" min="1" value="30">
@@ -255,13 +290,18 @@ body {
 const ADMIN_DB_URL = "https://script.google.com/macros/s/AKfycbwnBax9Di4onGtxQXG_XkzCtQ9vrMowCR_9GbLoYlKsoe5cYi_qxWlqZwY_-yZDrc8_Rg/exec";
 
 let allQ=[], activeQ=[];
-let userAnswers = {}; // Lưu đáp án người dùng { 0: 'A', 2: 'C' }
-let skippedQ = new Set(); // Lưu index các câu đã bấm bỏ qua
+let userAnswers = {}; 
+let skippedQ = new Set(); 
 let currentIdx = 0;
 
 let selTabs=new Set(), selLevels=new Set();
 
 window.onload = () => { fetchAdminDatabase(); };
+
+function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('active');
+    document.getElementById('menu-overlay').classList.toggle('active');
+}
 
 function fetchAdminDatabase() { fetchDatabase(ADMIN_DB_URL); }
 
@@ -385,7 +425,6 @@ function renderQuestion() {
   document.getElementById('q-text').textContent = q.question;
   const choices = document.getElementById('choices'); choices.innerHTML = '';
   
-  // Render options (A,B,C,D in fixed order as requested in standard exams)
   ['A','B','C','D'].forEach(k => {
     const div = document.createElement('div'); 
     div.className = 'choice';
@@ -401,9 +440,8 @@ function renderQuestion() {
 
 function selectOption(choiceKey) {
     userAnswers[currentIdx] = choiceKey;
-    skippedQ.delete(currentIdx); // Gỡ bỏ mác "Bỏ qua" nếu đã chọn đáp án
+    skippedQ.delete(currentIdx); 
     
-    // Tự động nhảy sang câu chưa làm tiếp theo
     let nextUnanswered = -1;
     for(let i = currentIdx + 1; i < activeQ.length; i++) {
         if(!userAnswers[i]) { nextUnanswered = i; break; }
@@ -413,7 +451,7 @@ function selectOption(choiceKey) {
         currentIdx = nextUnanswered;
         renderQuestion();
     } else {
-        renderQuestion(); // Re-render to show selection if it's the last one
+        renderQuestion(); 
     }
 }
 
@@ -423,7 +461,7 @@ function skipQuestion() {
         currentIdx++;
         renderQuestion();
     } else {
-        renderNavGrid(); // Just update color if at end
+        renderNavGrid(); 
     }
 }
 
@@ -461,16 +499,13 @@ function submitQuiz() {
         const cAns = q.answer.toUpperCase();
         const isCorrect = uAns === cAns;
         
-        // Cập nhật điểm
         if(isCorrect) score++;
         
-        // Thống kê theo mức độ
         const lvl = q.level || 'Khác';
         if(!lvlStats[lvl]) lvlStats[lvl] = { total: 0, correct: 0 };
         lvlStats[lvl].total++;
         if(isCorrect) lvlStats[lvl].correct++;
         
-        // Build review list (Show all, but style right/wrong)
         let icon = isCorrect ? '✅' : '❌';
         let uCol = isCorrect ? 'var(--success)' : 'var(--danger)';
         
@@ -486,15 +521,13 @@ function submitQuiz() {
           </div>`;
     });
     
-    // In kết quả
     const pct = Math.round((score / activeQ.length) * 100);
     document.getElementById('r-score-num').textContent = score;
     document.getElementById('r-score-total').textContent = `/ ${activeQ.length}`;
     
-    let msg = pct >= 85 ? '🎉 Điểm A nắm chắc trong tay!' : pct >= 65 ? '👍 Khá ổn, cần luyện thêm chút nữa!' : '📚 Khoan nhậu, ở nhà cày lại Sinh lý ngay!';
+    let msg = pct >= 85 ? '🎉 Điểm A nắm chắc trong tay!' : pct >= 65 ? '👍 Khá ổn, cần luyện thêm chút nữa!' : '📚 Khoan nhậu, cày lại Sinh lý ngay!';
     document.getElementById('r-message').textContent = `${pct}% - ${msg}`;
     
-    // In thống kê mức độ
     const lsDiv = document.getElementById('level-stats'); lsDiv.innerHTML = '';
     for(const [lvl, data] of Object.entries(lvlStats)) {
         lsDiv.innerHTML += `
